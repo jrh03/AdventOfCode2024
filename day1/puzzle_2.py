@@ -9,21 +9,18 @@ Would like to see if there is a more efficient way to do this.
 """
 
 
-def count_list():
-    lists = get_lists()
+def count_list(lists):
     return [Counter(lists[0]), Counter(lists[1])]
 
-def get_sim_score(counter: list[Counter]) -> int:
-    num = 0
+def get_sim_score(counter: list[Counter], shared_vals: set[int]) -> int:
+    return sum(num*counter[0][num]*counter[1][num] for num in shared_vals)
 
-    for key, value in counter[0].items():
-        if counter[1].get(key):
-            num += key * value * counter[1][key]
-
-    return num
+def get_shared_vals(lists: list[list[int]]) -> set[int]:
+    return set(lists[0]) & set(lists[1])
 
 def main():
-    print(get_sim_score(count_list()))
+    lists = get_lists()
+    print(get_sim_score(count_list(lists), get_shared_vals(lists)))
 
 if __name__ == "__main__":
     main()
