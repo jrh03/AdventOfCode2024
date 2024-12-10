@@ -5,7 +5,9 @@ from collections import Counter
 Used the input from puzzle_1 to get the input. Each list (left, right) is counted and stored in a list of Counters.
 Iterated through the left input, checking for matches in the right input.
 When a match is found, we add the similarity score to our total counter.
-Would like to see if there is a more efficient way to do this.
+Note: You can recognize from the problem that each time we find a match from left to right, we add the product of the
+numer and the right list. We do this as many times as it is in the left list. Hence, we can just do this once by 
+counting the left list and multiplying by it.
 """
 
 
